@@ -1,0 +1,38 @@
+.active {
+    color: var(--primary);
+    &:hover {
+        color: var(--primary);
+    }
+}
+.wapper {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 8px;
+}
+.item {
+    font-size: 18px;
+    font-weight: 700;
+    padding: 8px;
+    line-height: 25px;
+    border-radius: 4px;
+    transition: ease-in-out 200ms;
+    display: flex;
+    align-items: center;
+    &:hover {
+        background-color: rgba(22, 24, 35, 0.03);
+    }
+    &.active {
+        .icon {
+            display: none;
+        }
+        .iconActive {
+            display: block;
+        }
+    }
+}
+.iconActive {
+    display: none;
+}
+.title {
+    margin-left: 8px;
+}

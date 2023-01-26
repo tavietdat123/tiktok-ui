@@ -1,0 +1,64 @@
+.wrapper {
+    box-shadow: rgb(0 0 0 / 12%) 0px 1px 1px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: var(--white);
+    z-index: 999;
+}
+.content {
+    width: var(--container-width);
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 var(--padding-width);
+}
+
+.action {
+    display: flex;
+}
+
+.setting {
+    margin-left: 20px;
+    font-size: 20px;
+    padding: 0 8px;
+    background-color: transparent;
+}
+.icon_user {
+    background-color: transparent;
+    position: relative;
+    font-size: 22px;
+    margin-left: 18px;
+
+    .notify {
+        position: absolute;
+        color: var(--white);
+        font-weight: 700;
+        padding: 0 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-width: 20px;
+        border-radius: 99999px;
+        font-size: 1.4rem;
+        min-height: 20px;
+        background-color: var(--primary);
+        top: -4px;
+        right: -8px;
+        line-height: 0;
+    }
+}
+
+.avatar_user {
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    margin-left: 24px;
+    object-fit: cover;
+    cursor: pointer;
+}

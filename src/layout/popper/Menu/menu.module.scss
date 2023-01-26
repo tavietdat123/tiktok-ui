@@ -1,0 +1,49 @@
+.menu_list {
+    min-width: 223px;
+
+    .item {
+        border-color: transparent;
+        margin-left: 0px !important;
+        width: 100%;
+        justify-content: unset;
+        padding: 8px 8px 8px 16px;
+        font-size: 1.6rem;
+        font-weight: 500;
+        border-radius: 0;
+        &.icon {
+            font-size: 20px;
+        }
+        &.line {
+            border-top: 1px solid rgba(22, 24, 35, 0.12);
+        }
+    }
+}
+.menu_body {
+    overflow-y: auto;
+    max-height: 590px;
+}
+.popper_ {
+    padding-bottom: 8px;
+    max-height: unset;
+    // overflow-y: unset;
+}
+.header {
+    height: 50px;
+    position: relative;
+    margin-top: -8px;
+}
+.btn {
+    font-size: 1.8rem;
+    background-color: #fff;
+    height: 50px;
+    margin-left: 24px;
+    font-weight: 500;
+    padding: 0;
+}
+.title_header {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.6rem;
+}

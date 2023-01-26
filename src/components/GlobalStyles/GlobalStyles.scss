@@ -5,13 +5,100 @@
     --black: #000;
     --white: #fff;
     --text-color: #161823;
+    --container-width: 1150px;
+    --padding-width: 20px;
 }
 html {
     font-size: 62.5%;
 }
+
 body {
     font-family: 'Roboto', sans-serif;
     font-size: 1.6rem;
     line-height: 1.5;
+    color: var(--text-color);
     text-rendering: optimizespeed;
+    overflow-y: overlay;
+}
+// scrollbar
+html ::-webkit-scrollbar {
+    border-radius: 0px;
+    width: 8px;
+}
+html ::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: rgba(22, 24, 35, 0.06);
+}
+html ::-webkit-scrollbar-track {
+    border-radius: 0px;
+    background-color: rgba(0, 0, 0, 0);
+}
+button,
+input,
+[tabindex] {
+    outline: none;
+    border: none;
+}
+a {
+    color: var(--text-color);
+    text-decoration: none;
+    &:hover {
+        color: unset;
+    }
+}
+p {
+    margin: 0;
+}
+
+body {
+    .tippy-content {
+        padding: 8px 9px;
+    }
+    .tippy-box {
+        font-size: 1.6rem;
+        font-weight: 600;
+        line-height: 1.4;
+        border-radius: 8px;
+        background-color: rgba(84, 84, 84, 0.92);
+    }
+    .tippy-arrow {
+        color: rgba(84, 84, 84, 0.92);
+    }
+    .tippy-box[data-placement^='bottom'] > .tippy-arrow:before {
+        top: -8px;
+    }
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0;
+}
+// Font Family
+@font-face {
+    font-family: ProximaNova;
+    src: url('/assets/font/Proxima-Nova-Regular.woff2');
+    font-size: 400;
+}
+
+@font-face {
+    font-family: ProximaNova;
+    src: url('/assets/font/Proxima-Nova-Semibold.woff2');
+    font-size: 600;
+}
+@font-face {
+    font-family: ProximaNova;
+    src: url('/assets/font/Proxima-Nova-Bold.woff');
+    font-size: 700;
+}
+@font-face {
+    font-family: ProximaNova;
+    src: url('/assets/font/Proxima-Nova-Semibold.woff2');
+    font-size: 700;
+}
+@font-face {
+    font-family: SofiaPro;
+    src: url('/assets/font/zYXgKVElMYYaJe8bpLHnCwDKhd7eFb5N.woff2');
 }

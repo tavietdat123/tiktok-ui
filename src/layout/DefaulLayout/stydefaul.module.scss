@@ -1,0 +1,19 @@
+.wrapper {
+    display: flex;
+
+    flex-direction: column;
+}
+.content {
+    width: var(--container-width);
+    display: flex;
+    margin-top: 60px;
+}
+.container-c {
+    display: flex;
+    justify-content: center;
+}
+.container_content {
+    width: 692px;
+    margin: 0 16px;
+    padding-top: 24px;
+}

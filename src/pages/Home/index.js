@@ -1,5 +1,7 @@
+import ListVideo from '../../layout/ListVideo';
+
 function Home() {
-    return <h1>Home page</h1>;
+    return <ListVideo />;
 }
 
 export default Home;

@@ -1,0 +1,45 @@
+.wapper {
+    padding: 20px !important;
+    width: 320px !important;
+    max-height: unset !important;
+    z-index: 9;
+    .custom_btn {
+        padding: 4px 0;
+    }
+}
+.avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.title_item {
+    color: rgb(22, 24, 35);
+    letter-spacing: 0.5px;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 22px;
+    margin: 0;
+}
+.icon_check {
+    font-size: 1.5rem;
+    margin-left: 4px;
+    color: #20d5ec;
+}
+.nickname {
+    color: rgb(22, 24, 35);
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 20px;
+}
+.value {
+    font-weight: 700;
+    margin-right: 6px;
+    font-size: 17px;
+    line-height: 20px;
+}
+.behind {
+    color: rgba(22, 24, 35, 0.75);
+    font-size: 17px;
+    line-height: 20px;
+}

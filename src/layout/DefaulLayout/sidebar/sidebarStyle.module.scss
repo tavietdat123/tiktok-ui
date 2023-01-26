@@ -1,0 +1,39 @@
+.container_sibar {
+    width: 356px;
+    padding: 20px 8px 26px 8px;
+}
+.scroll {
+    overflow-x: hidden;
+    overscroll-behavior-y: contain;
+    perspective: 1px;
+    transform-style: preserve-3d;
+    padding-right: 12px;
+    perspective-origin: right top;
+    top: 60px;
+    bottom: 0;
+    width: 356px;
+    background: rgba(255, 255, 255, 1);
+    position: fixed;
+    z-index: 99;
+
+    overflow-y: hidden;
+
+    &:hover {
+        overflow-y: auto;
+
+        transition: overflow-y linear 1s;
+    }
+    &::-webkit-scrollbar {
+        width: 6px;
+    }
+    &::-webkit-scrollbar-thumb {
+        background: rgba(119, 119, 126, 0.06);
+    }
+    @keyframes identifier {
+        from {
+        }
+        to {
+            opacity: 1;
+        }
+    }
+}

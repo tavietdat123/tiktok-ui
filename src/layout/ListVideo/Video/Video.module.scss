@@ -1,0 +1,44 @@
+.wrapper {
+    height: calc(450px + (100vw - 768px) / 1152 * 100);
+    position: relative;
+    box-sizing: border-box;
+
+    background-size: cover;
+    cursor: pointer;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-right: 20px;
+}
+.video {
+    object-fit: cover;
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+.btn {
+    background-color: transparent;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 48px;
+    height: 48px;
+    font-size: 0px;
+    border-radius: 50%;
+    transition: all ease-in-out 200ms;
+    background-color: rgba(22, 24, 35, 0.06);
+    margin-top: 8px;
+    margin-bottom: 6px;
+}
+.quantity {
+    display: flex;
+    color: rgba(22, 24, 35, 0.75);
+    font-size: 12px;
+    line-height: 17px;
+    justify-content: center;
+}

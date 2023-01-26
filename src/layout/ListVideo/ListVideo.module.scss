@@ -1,0 +1,71 @@
+.container {
+    padding: 20px 0;
+    display: flex;
+    position: relative;
+}
+.img {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.content {
+    width: 624px;
+    margin-left: 12px;
+}
+.mr114 {
+    margin-right: 114px;
+}
+.nickName {
+    font-weight: 700;
+    font-size: 1.8rem;
+    line-height: 25px;
+    display: inline-block;
+    margin-right: 4px;
+}
+.iconCheck {
+    width: 14px;
+    height: 14px;
+    margin-left: 4px;
+    color: rgb(32, 213, 236);
+}
+.fullName {
+    font-weight: 400;
+    font-size: 14px;
+    display: inline-block;
+    line-height: 28px;
+}
+.hovernn {
+    &:hover {
+        text-decoration: underline;
+    }
+}
+.btn_fl {
+    right: 0px;
+    position: absolute;
+    top: 28px;
+}
+.hashtag {
+    margin-left: 3px;
+    display: inline-block;
+    &:hover {
+        text-decoration: underline;
+    }
+    strong {
+        font-weight: 500;
+    }
+}
+
+.sound {
+    margin: 4px 0 12px;
+    display: block;
+    span {
+        font-weight: 500;
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
+.lh22 {
+    line-height: 22px;
+}
