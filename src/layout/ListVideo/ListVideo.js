@@ -12,9 +12,11 @@ const cx = classNames.bind(styles);
 function ListVideo() {
     return (
         <div className={cx('container')}>
-            <Link to="/@datxz">
-                <Image alt="avatar" className={cx('img')} />
-            </Link>
+            <div>
+                <Link to="/@datxz">
+                    <Image alt="avatar" className={cx('img')} />
+                </Link>
+            </div>
             <div className={cx('content')}>
                 <div className={cx('mr114')}>
                     <Link to="/@datxz" className="d-flex pb-1">

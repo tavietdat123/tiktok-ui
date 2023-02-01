@@ -1,29 +1,154 @@
-import Videos from '../../../assets/video';
 import classNames from 'classnames/bind';
 import styles from './Video.module.scss';
-import { CommentIcon, HeartIcon, ShareIcon } from '../../Icons';
-import { useEffect, useRef, useState } from 'react';
-const cx = classNames.bind(styles);
-function Video() {
-    const videoRef = useRef();
-    // const [play, setPlay] = useState(true);
-    useEffect(() => {
-        videoRef.current.play();
-    }, []);
 
+import { CommentIcon, ShareFriend } from '../../Icons';
+import MenuShare from './MenuShare/MenuShare';
+import HeartActive from './HeartActive';
+import VideoControl from './VideoControl';
+
+const cx = classNames.bind(styles);
+const LIST_SHARE = [
+    {
+        icon: <ShareFriend />,
+        title: 'Nhúng',
+    },
+    {
+        icon: <ShareFriend />,
+        title: 'Gửi đến bạn bè',
+    },
+    {
+        icon: <ShareFriend />,
+        title: 'Chia sẻ với Facebook',
+        href: 'facebook.com',
+    },
+    {
+        icon: <ShareFriend />,
+        title: 'Chia sẻ với WhatsApp',
+        href: 'facebook.com',
+    },
+    {
+        icon: <ShareFriend />,
+        title: 'Sao chép liên kết',
+        href: 'facebook.com',
+    },
+];
+const LIST_SHARE_MORE = [
+    {
+        icon: <ShareFriend />,
+        title: 'Sao chép liên kết',
+        href: 'facebook.com',
+    },
+    {
+        icon: <ShareFriend />,
+        title: 'Sao chép liên kết',
+        href: 'facebook.com',
+    },
+    {
+        icon: <ShareFriend />,
+        title: 'Sao chép liên kết',
+        href: 'facebook.com',
+    },
+    {
+        icon: <ShareFriend />,
+        title: 'Sao chép liên kết',
+        href: 'facebook.com',
+    },
+    {
+        icon: <ShareFriend />,
+        title: 'Sao chép liên kết',
+        href: 'facebook.com',
+    },
+    {
+        icon: <ShareFriend />,
+        title: 'Sao chép liên kết',
+        href: 'facebook.com',
+    },
+];
+
+const report = [
+    {
+        title: 'Minor safety',
+        children: {
+            title: 'Nudity or sexual activity of minors1',
+            data: [
+                {
+                    title: 'Nudity or sexual activity of minors2',
+                    children: {
+                        data: [
+                            {
+                                title: 'Nudity or sexual activity of minors1',
+                                final: true,
+                                text: [
+                                    {
+                                        text: 'Content exposing minors genitals, buttocks, or pubic region, or nipples of female minors',
+                                    },
+                                    {
+                                        text: 'Content exposing minors genitals, buttocks, or pubic region, or nipples of female minors',
+                                    },
+                                    {
+                                        text: 'Content exposing minors genitals, buttocks, or pubic region, or nipples of female minors',
+                                    },
+                                ],
+                            },
+                        ],
+                    },
+                },
+                {
+                    title: 'Abuse or crimes against minors',
+                    children: {
+                        data: [
+                            {
+                                title: 'Nudity or sexual activity of minors2',
+                                final: true,
+                                text: [
+                                    {
+                                        text: 'Content exposing minors genitals, buttocks, or pubic region, or nipples of female minors',
+                                    },
+                                    {
+                                        text: 'Content exposing minors genitals, buttocks, or pubic region, or nipples of female minors',
+                                    },
+                                    {
+                                        text: 'Content exposing minors genitals, buttocks, or pubic region, or nipples of female minors',
+                                    },
+                                ],
+                            },
+                        ],
+                    },
+                },
+                {
+                    title: 'Dangerous or illegal behaviors by minors',
+                    children: {
+                        data: [
+                            {
+                                title: 'Nudity or sexual activity of minors3',
+                                final: true,
+                                text: [
+                                    {
+                                        text: 'Content exposing minors genitals, buttocks, or pubic region, or nipples of female minors',
+                                    },
+                                    {
+                                        text: 'Content exposing minors genitals, buttocks, or pubic region, or nipples of female minors',
+                                    },
+                                    {
+                                        text: 'Content exposing minors genitals, buttocks, or pubic region, or nipples of female minors',
+                                    },
+                                ],
+                            },
+                        ],
+                    },
+                },
+            ],
+        },
+    },
+];
+function Video() {
+    console.log('re-render');
     return (
         <div className="d-flex">
-            <div className={cx('wrapper')}>
-                <video className={cx('video')} onLoad={() => alert('test')} ref={videoRef} src={Videos.video} />
-            </div>
+            <VideoControl dataReport={report} />
             <div className="d-flex flex-lg-column flex justify-content-end">
                 <button className={cx('btn')}>
-                    <span className={cx('icon')}>
-                        <HeartIcon />
-                    </span>
-                    <strong className={cx('quantity')}>
-                        <p>280.8K</p>
-                    </strong>
+                    <HeartActive />
                 </button>
                 <button className={cx('btn')}>
                     <span className={cx('icon')}>
@@ -32,9 +157,7 @@ function Video() {
                     <strong className={cx('quantity')}>222</strong>
                 </button>
                 <button className={cx('btn')}>
-                    <span className={cx('icon')}>
-                        <ShareIcon />
-                    </span>
+                    <MenuShare currentMenu={LIST_SHARE} MoreMenu={LIST_SHARE_MORE} />
                     <strong className={cx('quantity')}>437</strong>
                 </button>
             </div>
