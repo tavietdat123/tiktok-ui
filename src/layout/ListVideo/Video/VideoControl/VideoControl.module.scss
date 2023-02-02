@@ -8,6 +8,13 @@
     border-radius: 8px;
     overflow: hidden;
     margin-right: 20px;
+    .opa {
+        opacity: 0;
+        transition: opacity 0.3s ease 0s;
+    }
+    &:hover .opa {
+        opacity: 1;
+    }
 }
 .play {
     left: 12px;
@@ -55,6 +62,12 @@
         transform: translate(-50%, -50%);
         pointer-events: none;
     }
+    &:hover {
+        --height-seekbar: 4px;
+    }
+    &:hover .run {
+        display: block;
+    }
 }
 .wrapperSeek {
     width: 100%;
@@ -98,11 +111,14 @@
     transform: translate(-50%, -50%);
     cursor: pointer;
     z-index: 1;
-    left: 73%;
+    display: none;
+    pointer-events: none; /* Remove pointer events on thumb so user can click on the actual thumb beaneath it!  */
+    user-select: none; /*  Prevent Accidentally highlighting the number while sliding the cursor  */
+    margin-left: 10px;
 }
 
 .current_time {
-    height: 2px;
+    height: var(--height-seekbar);
     width: 100%;
     background-color: rgb(255, 255, 255);
     position: absolute;
@@ -110,18 +126,17 @@
     transform: translateY(-50%);
     cursor: pointer;
     transform-origin: left center;
-    transform: scaleX(0.739281) translateY(-50%);
 }
 .seekBar_horizontal {
     width: 2px;
     height: 48px;
     background-color: rgba(255, 255, 255, 0.34);
-    position: absolute;
-    left: 11px;
-    top: 8px;
     bottom: 8px;
     cursor: pointer;
     border-radius: 4px;
+    -webkit-appearance: slider-vertical;
+    z-index: 1;
+    opacity: 0;
 }
 .run_horizontal {
     width: 12px;
@@ -129,31 +144,52 @@
     background-color: rgb(255, 255, 255);
     border-radius: 12px;
     position: absolute;
-    left: 6px;
-    bottom: 8px;
+    left: 50%;
     cursor: pointer;
-    z-index: 1;
-    transform: translateY(-36px);
+    z-index: 2;
+    bottom: 8px;
+    transform: translateX(-50%);
+    pointer-events: none; /* Remove pointer events on thumb so user can click on the actual thumb beaneath it!  */
+    user-select: none; /*  Prevent Accidentally highlighting the number while sliding the cursor  */
 }
 .current_time_horizontal {
-    width: 2px;
-    height: 48px;
+    width: 3px;
+    height: 30px;
     background-color: rgb(255, 255, 255);
     position: absolute;
-    left: 11px;
     bottom: 8px;
     cursor: pointer;
-    transform: scaleY(1);
+    display: flex;
+    right: 50%;
+    justify-content: flex-end;
+    transform: translateX(50%);
     transform-origin: center bottom;
-    border-radius: 4px;
+    pointer-events: none; /* Remove pointer events on thumb so user can click on the actual thumb beaneath it!  */
+    user-select: none;
 }
 .horizontal {
     width: 24px;
     height: 64px;
     margin: 8px 7px 0px;
-    display: block;
     position: relative;
     cursor: initial;
     background: rgba(22, 24, 35, 0.34);
     border-radius: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &::before {
+        content: '';
+        width: 3px;
+        height: 48px;
+        background-color: rgba(255, 255, 255, 0.34);
+        color: #fff;
+        display: block;
+        position: absolute;
+        border-radius: 10px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        pointer-events: none;
+    }
 }

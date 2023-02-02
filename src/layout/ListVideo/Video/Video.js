@@ -142,11 +142,10 @@ const report = [
     },
 ];
 function Video() {
-    console.log('re-render');
     return (
         <div className="d-flex">
             <VideoControl dataReport={report} />
-            <div className="d-flex flex-lg-column flex justify-content-end">
+            <div className="d-flex flex-lg-column flex justify-content-end ">
                 <button className={cx('btn')}>
                     <HeartActive />
                 </button>

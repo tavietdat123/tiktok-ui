@@ -1,25 +1,51 @@
-import { useRef, useState } from 'react';
-import { MuteVolumeIcon, VolumeIcon, PauseIcon, PlayIcon } from '../../../Icons';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import { MuteVolumeIcon, PauseIcon, PlayIcon, VolumeIcon } from '../../../Icons';
 import Report from '../Report';
-import Tippy from '@tippyjs/react/headless';
 import Videos from '../../../../assets/video';
 import classNames from 'classnames/bind';
 import styles from './VideoControl.module.scss';
+import SeekBar from './SeekBar';
+import Volume from './Volume';
+import Tippy from '@tippyjs/react/headless';
 
 const cx = classNames.bind(styles);
 
 function VideoControl({ dataReport }) {
     const videoRef = useRef();
     const [play, setPlay] = useState(false);
-    const [muted, setMuted] = useState(false);
+    const [muted, setMuted] = useState(() => JSON.parse(localStorage.getItem('volume')));
+    const [percentage, setPercentage] = useState(0);
+    const [currentTime, setCurrentTime] = useState(0);
+    const [duration, setDuration] = useState(0);
     const handlePlay = () => {
         setPlay(!play);
         if (play) {
-            videoRef.current.pause();
+            videoRef.current.play();
         } else {
             videoRef.current.pause();
         }
     };
+    const handleChangeVideo = (e) => {
+        const video = videoRef.current;
+        video.currentTime = (video.duration / 100) * e.target.value;
+        setPercentage(e.target.value);
+    };
+    const handleTimeUpdate = (e) => {
+        const percent_UD = ((e.currentTarget.currentTime / e.currentTarget.duration) * 100).toFixed(2);
+        setPercentage(percent_UD);
+        setCurrentTime(e.target.currentTime);
+    };
+    useEffect(() => {
+        localStorage.setItem('volume', JSON.stringify(muted));
+        videoRef.current.volume = muted / 100;
+    }, [muted]);
+    const handleVolume = useCallback((e) => {
+        const volume = e.target.value;
+        if (volume < 0.01) {
+            return setMuted(0);
+        }
+        setMuted(volume);
+    }, []);
     return (
         <div className={cx('wrapper')}>
             <video
@@ -27,44 +53,52 @@ function VideoControl({ dataReport }) {
                 ref={videoRef}
                 onEnded={() => videoRef.current.play()}
                 src={Videos.video}
-                muted={true}
+                muted={muted < 0}
+                onLoadedData={(e) => {
+                    setDuration(e.target.duration.toFixed(0));
+                }}
+                onTimeUpdate={handleTimeUpdate}
+                autoPlay
             />
-            <Report base={dataReport} />
-            <div className={cx('play')} onClick={handlePlay}>
+            <div className={cx('opa')}>
+                <Report base={dataReport} />
+            </div>
+            <div className={cx('play', 'opa')} onClick={handlePlay}>
                 {play ? <PauseIcon /> : <PlayIcon />}
             </div>
-            <div>
+            <div className={cx('opa')}>
                 <Tippy
-                    visible
                     interactive
                     placement="top-start"
+                    offset={[0, 0]}
+                    hideOnClick={false}
                     render={(attrs) => (
                         <div className={cx('')} tabIndex="-1" {...attrs}>
-                            <div className={cx('horizontal')}>
-                                <div className={cx('seekBar_horizontal')}></div>
-                                <div className={cx('run_horizontal')}></div>
-                                <div className={cx('current_time_horizontal')}></div>
-                            </div>
+                            <Volume muted={muted} setMuted={handleVolume} />
                         </div>
                     )}
                 >
                     <div
                         className={cx('sound')}
                         onClick={() => {
-                            setMuted(!muted);
+                            if (muted === 0) {
+                                setMuted(50);
+                            } else {
+                                setMuted(0);
+                            }
                         }}
                     >
-                        {(muted && <MuteVolumeIcon />) || <VolumeIcon />}
+                        {(muted === 0 && <MuteVolumeIcon />) || <VolumeIcon />}
                     </div>
                 </Tippy>
             </div>
-            <div className={cx('wrapperSeek')}>
-                <div className={cx('divSeekBar')}>
-                    <div className={cx('run')}></div>
-                    <div className={cx('current_time')}></div>
-                    <input type="range" className={cx('seekBar')} step="0.01" />
-                </div>
-                <div className={cx('timer')}></div>
+            <div className={cx('opa')}>
+                <SeekBar
+                    percentage={percentage}
+                    handleChangeVideo={handleChangeVideo}
+                    currentTime={currentTime}
+                    duration={duration}
+                />
             </div>
         </div>
     );
