@@ -1,12 +1,12 @@
 import { Link } from 'react-router-dom';
 import classNames from 'classnames/bind';
 import styles from './ListVideo.module.scss';
-import Button from '../Button';
 import { MusicIcon } from '../Icons';
 import Image from '../Image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleCheck } from '@fortawesome/free-solid-svg-icons';
 import Video from './Video';
+import Follow from './Video/Follow';
 
 const cx = classNames.bind(styles);
 function ListVideo() {
@@ -26,9 +26,9 @@ function ListVideo() {
                         </h3>
                         <h4 className={cx('fullName')}>Oppa Huy IDol</h4>
                     </Link>
-                    <Button small outline className={cx('btn_fl')}>
-                        Follow
-                    </Button>
+                    <div className={cx('btn_fl')}>
+                        <Follow />
+                    </div>
                     <div className="lh22">
                         <span> Mua cái máy cho con học mà học xong nó bảo Bố Tiếng Anh là DOG 🤣🤣🤣</span>
                         <Link to="/search" className={cx('hashtag')}>

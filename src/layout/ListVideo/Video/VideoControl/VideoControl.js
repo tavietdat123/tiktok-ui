@@ -7,13 +7,13 @@ import styles from './VideoControl.module.scss';
 import SeekBar from './SeekBar';
 import Volume from './Volume';
 import Tippy from '@tippyjs/react/headless';
-
+import PropTypes from 'prop-types';
 const cx = classNames.bind(styles);
 
 function VideoControl({ dataReport }) {
     const videoRef = useRef();
     const [play, setPlay] = useState(false);
-    const [muted, setMuted] = useState(() => JSON.parse(localStorage.getItem('volume')));
+    const [muted, setMuted] = useState(() => parseFloat(JSON.parse(localStorage.getItem('volume'))) || 0);
     const [percentage, setPercentage] = useState(0);
     const [currentTime, setCurrentTime] = useState(0);
     const [duration, setDuration] = useState(0);
@@ -25,14 +25,14 @@ function VideoControl({ dataReport }) {
             videoRef.current.pause();
         }
     };
-    const handleChangeVideo = (e) => {
+    const handleChangeVideo = useCallback((e) => {
         const video = videoRef.current;
         video.currentTime = (video.duration / 100) * e.target.value;
-        setPercentage(e.target.value);
-    };
+        setPercentage(parseFloat(e.target.value));
+    }, []);
     const handleTimeUpdate = (e) => {
         const percent_UD = ((e.currentTarget.currentTime / e.currentTarget.duration) * 100).toFixed(2);
-        setPercentage(percent_UD);
+        setPercentage(parseFloat(percent_UD));
         setCurrentTime(e.target.currentTime);
     };
     useEffect(() => {
@@ -55,7 +55,7 @@ function VideoControl({ dataReport }) {
                 src={Videos.video}
                 muted={muted < 0}
                 onLoadedData={(e) => {
-                    setDuration(e.target.duration.toFixed(0));
+                    setDuration(parseFloat(e.target.duration.toFixed(0)));
                 }}
                 onTimeUpdate={handleTimeUpdate}
                 autoPlay
@@ -72,6 +72,9 @@ function VideoControl({ dataReport }) {
                     placement="top-start"
                     offset={[0, 0]}
                     hideOnClick={false}
+                    onShow={() => {
+                        setMuted(JSON.parse(localStorage.getItem('volume')));
+                    }}
                     render={(attrs) => (
                         <div className={cx('')} tabIndex="-1" {...attrs}>
                             <Volume muted={muted} setMuted={handleVolume} />
@@ -104,4 +107,7 @@ function VideoControl({ dataReport }) {
     );
 }
 
+VideoControl.propTypes = {
+    dataReport: PropTypes.array.isRequired,
+};
 export default VideoControl;

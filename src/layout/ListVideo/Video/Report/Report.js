@@ -3,7 +3,7 @@ import { FlagIcon } from '../../../Icons';
 import classNames from 'classnames/bind';
 import styles from './Report.module.scss';
 import Modal from '../../../Modal';
-import { useEffect, useState } from 'react';
+import { memo, useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faXmark } from '@fortawesome/free-solid-svg-icons';
 import Item from './item';
@@ -87,4 +87,4 @@ function Report({ base }) {
 Report.propTypes = {
     base: PropTypes.array.isRequired,
 };
-export default Report;
+export default memo(Report);

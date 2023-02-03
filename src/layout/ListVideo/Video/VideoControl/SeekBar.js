@@ -1,7 +1,7 @@
 import classNames from 'classnames/bind';
-import { useRef } from 'react';
+import { memo, useRef } from 'react';
 import styles from './VideoControl.module.scss';
-
+import PropTypes from 'prop-types';
 const cx = classNames.bind(styles);
 
 function SeekBar({ percentage, handleChangeVideo, currentTime, duration }) {
@@ -44,4 +44,10 @@ function SeekBar({ percentage, handleChangeVideo, currentTime, duration }) {
     );
 }
 
-export default SeekBar;
+SeekBar.propTypes = {
+    percentage: PropTypes.number,
+    handleChangeVideo: PropTypes.func.isRequired,
+    currentTime: PropTypes.number,
+    duration: PropTypes.number,
+};
+export default memo(SeekBar);

@@ -1,7 +1,7 @@
 import classNames from 'classnames/bind';
 import styles from './VideoControl.module.scss';
 import { memo, useEffect, useRef, useState } from 'react';
-
+import PropTypes from 'prop-types';
 const cx = classNames.bind(styles);
 function Volume({ muted, setMuted }) {
     const [crt, setCrt] = useState(0);
@@ -10,15 +10,11 @@ function Volume({ muted, setMuted }) {
     const currentVolume = useRef(null);
     const run = useRef();
     const input = useRef();
-
     useEffect(() => {
         const height = input.current.offsetHeight;
-        console.log(height);
-
         const heightCurren = height * (muted / 100);
         setCrt(heightCurren);
         const margin = run.current.getBoundingClientRect().height;
-
         setR((height - margin) * (muted / 100));
     }, [muted]);
     return (
@@ -36,5 +32,8 @@ function Volume({ muted, setMuted }) {
         </div>
     );
 }
-
+Volume.propTypes = {
+    muted: PropTypes.number,
+    setMuted: PropTypes.func.isRequired,
+};
 export default memo(Volume);
